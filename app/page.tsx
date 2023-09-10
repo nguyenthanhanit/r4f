@@ -1,6 +1,6 @@
+import React from "react";
 import {title, subtitle} from "@/components/primitives";
 import {Progress} from "@nextui-org/progress";
-import React from "react";
 
 export default function Home() {
     return (

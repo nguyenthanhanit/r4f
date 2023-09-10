@@ -1,3 +1,4 @@
+import * as React from "react";
 import "@/styles/globals.css";
 import { Metadata } from "next";
 import { siteConfig } from "@/config/site";
