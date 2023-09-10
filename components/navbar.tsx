@@ -8,14 +8,13 @@ import {
     NavbarMenuItem,
 } from "@nextui-org/navbar";
 import {Link} from "@nextui-org/link";
-import {Image} from "@nextui-org/image";
 import {link as linkStyles} from "@nextui-org/theme";
 import {siteConfig} from "@/config/site";
 import NextLink from "next/link";
 import clsx from "clsx";
 import {ThemeSwitch} from "@/components/theme-switch";
-
 import {Logo} from "@/components/icons";
+import {Login} from "@/components/login";
 
 export const Navbar = () => {
     return (
@@ -51,11 +50,7 @@ export const Navbar = () => {
             >
                 <NavbarItem className="hidden sm:flex gap-2">
                     <ThemeSwitch/>
-                    <Image
-                        width={193}
-                        alt="NextUI hero Image"
-                        src="https://www.vozrun.club/static/img/connect-strava.d83ae0ffeb96.png"
-                    />
+                    <Login />
                 </NavbarItem>
             </NavbarContent>
 

@@ -1,12 +1,10 @@
-'use client'
-
 import React from "react";
 import {Card, CardHeader, CardBody, CardFooter} from "@nextui-org/card";
 import {Button} from "@nextui-org/button";
 import moment from 'moment';
 
 export default function ChallengesPage() {
-    const [isJoined, setIsJoined] = React.useState(false);
+    const isJoined = true;
     const list = [
         {
             title: "Orange",
@@ -107,7 +105,6 @@ export default function ChallengesPage() {
                             radius="full"
                             size="sm"
                             variant={isJoined ? "bordered" : "solid"}
-                            onPress={() => setIsJoined(!isJoined)}
                         >
                             {isJoined ? "Joined" : "Join"}
                         </Button>
