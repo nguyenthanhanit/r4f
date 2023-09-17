@@ -14,7 +14,7 @@ import NextLink from "next/link";
 import clsx from "clsx";
 import {ThemeSwitch} from "@/components/theme-switch";
 import {Logo} from "@/components/icons";
-import {Login} from "@/components/login";
+import {Account} from "@/components/account";
 
 export const Navbar = () => {
     return (
@@ -50,7 +50,7 @@ export const Navbar = () => {
             >
                 <NavbarItem className="hidden sm:flex gap-2">
                     <ThemeSwitch/>
-                    <Login />
+                    <Account />
                 </NavbarItem>
             </NavbarContent>
 
