@@ -10,7 +10,7 @@ import type {Session} from "next-auth";
 export interface ProvidersProps {
     children: React.ReactNode;
     themeProps?: ThemeProviderProps;
-    session: Session;
+    session?: Session;
 }
 
 export function Providers({children, themeProps, session}: ProvidersProps) {

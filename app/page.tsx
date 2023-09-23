@@ -27,7 +27,7 @@ export default async function Home() {
         </section>
     }
 
-    const stats = await getStats(session?.sub, session?.accessToken);
+    const stats = await getStats(session?.user?.sub, session?.user?.accessToken);
     const km = stats?.ytd_run_totals?.distance / 1000;
 
     return (

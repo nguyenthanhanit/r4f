@@ -1,14 +1,19 @@
 import type {GetServerSidePropsContext, NextApiRequest, NextApiResponse} from "next"
 import type {NextAuthOptions as NextAuthConfig} from "next-auth"
-import {getServerSession} from "next-auth"
+import {getServerSession, DefaultSession} from "next-auth"
 
 import Strava from "next-auth/providers/strava"
 
 // Read more at: https://next-auth.js.org/getting-started/typescript#module-augmentation
-declare module "next-auth/jwt" {
-    interface JWT {
-        /** The user's role. */
-        userRole?: "admin"
+declare module "next-auth" {
+    /**
+     * Returned by `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
+     */
+    interface Session {
+        user: {
+            sub: string,
+            accessToken: string,
+        } & DefaultSession["user"]
     }
 }
 
@@ -31,8 +36,10 @@ export const config = {
         },
         async session({ session, token, user }) {
             // Send properties to the client, like an access_token from a provider.
-            session.accessToken = token.accessToken;
-            session.sub = token.sub;
+            if (typeof token.accessToken === 'string' && token.sub) {
+                session.user.accessToken = token.accessToken;
+                session.user.sub = token.sub;
+            }
 
             return session;
         }
