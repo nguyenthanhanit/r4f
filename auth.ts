@@ -60,6 +60,7 @@ declare global {
 
             AUTH_STRAVA_ID: string
             AUTH_STRAVA_SECRET: string
+            MONGODB_URI: string
         }
     }
 }
