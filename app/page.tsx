@@ -3,8 +3,6 @@ import moment from "moment";
 import {subtitle, title} from "@/components/primitives";
 import {getServerSession} from "next-auth/next";
 import {config} from "@/auth";
-import {Processing} from "@/components/progressing";
-import {getTarget} from "@/utils/target";
 
 async function getStats(id: string, accessToken: string) {
     const res = await fetch(`https://www.strava.com/api/v3/athletes/${id}/stats`, {
@@ -31,8 +29,6 @@ export default async function Home() {
     const idStrava = session?.user?.sub;
     const stats = await getStats(idStrava, session?.user?.accessToken);
     const km = stats?.ytd_run_totals?.distance / 1000;
-    const year = moment().year();
-    const targetInYear = await getTarget(idStrava, year);
 
     return (
         <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
@@ -41,13 +37,12 @@ export default async function Home() {
                 <h1 className={title({color: "violet"})}>{session?.user?.name}&nbsp;</h1>
                 <br/>
                 <h1 className={title()}>
-                    bạn đã chạy {km.toFixed(1)} km trong năm {year} rồi đó.
+                    bạn đã chạy {km.toFixed(1)} km trong năm {moment().year()} rồi đó.
                 </h1>
                 <h2 className={subtitle({class: "mt-4"})}>
                     thật tuyệt vời, hãy cố gắng phát huy nhé
                 </h2>
             </div>
-            <Processing targetInYear={targetInYear?.distance}/>
         </section>
     );
 }
