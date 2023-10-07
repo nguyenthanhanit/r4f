@@ -23,6 +23,11 @@ export const config = {
         Strava({
             clientId: process.env.AUTH_STRAVA_ID,
             clientSecret: process.env.AUTH_STRAVA_SECRET,
+            authorization: {
+                params: {
+                    scope: "activity:read,read"
+                }
+            }
         }),
     ],
     callbacks: {
