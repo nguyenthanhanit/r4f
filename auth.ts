@@ -91,6 +91,10 @@ export const config = {
             }
         },
         async session({session, token}) {
+            if (!token.sub) {
+                return session;
+            }
+
             // Send properties to the client, like an access_token from a provider.
             return {
                 ...session,
