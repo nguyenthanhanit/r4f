@@ -92,18 +92,17 @@ export const config = {
         },
         async session({session, token}) {
             // Send properties to the client, like an access_token from a provider.
-            if (token.sub &&
-                typeof token.accessToken === 'string' &&
-                typeof token.refreshToken === 'string' &&
-                typeof token.expiresAt === 'number'
-            ) {
-                session.user.sub = token.sub;
-                session.user.accessToken = token.accessToken;
-                session.user.refreshToken = token.refreshToken;
-                session.user.expiresAt = token.expiresAt;
-            }
-
-            return session;
+            return {
+                ...session,
+                ...{
+                    user: {
+                        ...session.user,
+                        sub: token.sub,
+                        accessToken: token.accessToken,
+                        refreshToken: token.refreshToken,
+                    }
+                }
+            };
         }
     },
 } satisfies NextAuthConfig
