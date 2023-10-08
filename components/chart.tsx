@@ -69,6 +69,7 @@ export const Chart = () => {
     const {data: session} = useSession();
     const [data, setData] = useState<ChartProps>(dataChart);
     const [loading, setLoading] = useState(true);
+    console.log(session)
 
     // This code inside useEffect will run when the component is mounted
     useEffect(() => {
