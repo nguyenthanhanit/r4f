@@ -41,6 +41,7 @@ export const config = {
     ],
     callbacks: {
         async jwt({token, account}) {
+            console.log(token)
             if (account) {
                 // Save the access token and refresh token in the JWT on the initial login
                 return {
