@@ -69,12 +69,14 @@ export const Chart = () => {
     const {data: session} = useSession();
     const [data, setData] = useState<ChartProps>(dataChart);
     const [loading, setLoading] = useState(true);
-    console.log(session)
 
     // This code inside useEffect will run when the component is mounted
     useEffect(() => {
+        const from = moment().startOf('year').unix();
+        const to = moment().startOf('month').add(1, 'M').unix();
+
         const fetchData = async () => {
-            const res = await fetch(`https://www.strava.com/api/v3/athlete/activities?after=1672506000&before=1696093200&per_page=200&access_token=${session?.user?.accessToken}`);
+            const res = await fetch(`https://www.strava.com/api/v3/athlete/activities?after=${from}&before=${to}&per_page=200&access_token=${session?.user?.accessToken}`);
 
             return await res.json();
         }
@@ -82,7 +84,7 @@ export const Chart = () => {
         if (session?.user?.accessToken) {
             fetchData().then(res => {
                 const currentMonth = moment().month();
-                const monthsToNow = months.slice(0, currentMonth);
+                const monthsToNow = months.slice(0, currentMonth + 1);
                 let labels: string[] = [];
                 let dataPoint: number[] = [];
 
