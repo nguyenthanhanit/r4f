@@ -15,7 +15,6 @@ import {
 import {Line} from 'react-chartjs-2';
 import moment from "moment";
 import {ChartProps, SummaryActivityProps} from "@/types";
-import {round} from "@kurkle/color";
 
 ChartJS.register(
     CategoryScale,
@@ -96,7 +95,7 @@ export const Chart = () => {
                     const sumWithInitial = distances.reduce((accumulator: number, currentValue: number) => accumulator + currentValue, 0);
 
                     labels.push(month);
-                    dataPoint.push(round(sumWithInitial / 1000));
+                    dataPoint.push(Math.round(sumWithInitial / 1000));
                 })
 
                 data.labels = labels;
